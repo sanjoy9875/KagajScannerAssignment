@@ -7,10 +7,12 @@
 
 
 plugins {
+
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-kapt'
     id 'kotlin-android-extensions'
+    
 }
 
 
@@ -61,7 +63,6 @@ Used Dependency {
     implementation "androidx.camera:camera-lifecycle:$camerax_version"
     // CameraX View class
     implementation "androidx.camera:camera-view:1.0.0-alpha27"
-
 
 
 }
