@@ -7,17 +7,16 @@ import com.example.cameraapp.data.EntityTable
 
 class EntityRepository(val entityDAO: EntityDAO) {
 
-    private var databaseList = mutableListOf<EntityTable>()
-
     /**
-     * This function will call our API & give us the response
-     * */
+     * This function will store the data into database
+     **/
+
     fun addEntity(table: EntityTable)  {
         entityDAO.addEntity(table)
     }
 
     /**
-     * Give us the list of ResponseEntity
+     * Give us the list of EntityTable
      **/
     fun getEntity(): LiveData<List<EntityTable>> {
         return entityDAO.getEntity()

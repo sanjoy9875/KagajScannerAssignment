@@ -42,6 +42,9 @@ class EntityAdapter(private var entity: List<EntityTable>,private val onItemClic
     }
 
 
+    /**
+     * ViewHolder class
+     **/
     class EntityViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
 
         val mIvItemImage: ImageView = view.findViewById(R.id.ivImage)

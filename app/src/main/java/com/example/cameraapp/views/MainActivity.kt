@@ -38,9 +38,16 @@ class MainActivity : AppCompatActivity() ,OnItemClick {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        /**
+         * initializing adapter & layoutManager
+         **/
         adapter = EntityAdapter(entityList,this)
         recyclerView.layoutManager = GridLayoutManager(this, 2)
         recyclerView.adapter = adapter
+
+        /**
+         * creating viewModel object
+         **/
 
         val appObj = application as EntityApplication
         val repository = appObj.repository
@@ -48,16 +55,20 @@ class MainActivity : AppCompatActivity() ,OnItemClick {
         viewModel = ViewModelProviders.of(this, viewModelFactory)
             .get(EntityViewModel::class.java)
 
+        /**
+         * getting the data from room database
+         * */
         viewModel.getEntity().observe(this, Observer {
             entityList.clear()
             entityList.addAll(it)
             adapter.notifyDataSetChanged()
         })
-
-
-
     }
 
+
+    /**
+     * onClick of a image start a animation & zoom that photo
+     **/
     override fun onEntityItemClicked(position: Int, mIvItemImage: ImageView) {
 
         zoomImageFromThumb(mIvItemImage,entityList[position].image_url)
@@ -66,9 +77,9 @@ class MainActivity : AppCompatActivity() ,OnItemClick {
     }
 
 
-
-
-
+    /**
+     * function for zoom a photo
+     **/
     private fun zoomImageFromThumb(thumbView: View, imageResId: String) {
         // If there's an animation in progress, cancel it
         // immediately and proceed with this one.

@@ -33,18 +33,18 @@ class CaptureImageActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_capture_image)
 
-
-
         outputDirectory = getOutputDirectory()
 
-        if (ActivityCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
-            ) == PackageManager.PERMISSION_GRANTED
-        ) {
+        /**
+         * checking if camera permission granted then only start the camera
+         **/
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
             startCamera()
         }
 
+        /**
+         * onClick of this button camera Will start
+         **/
         btnCaptureImage.setOnClickListener {
             takePhoto()
         }
@@ -61,6 +61,9 @@ class CaptureImageActivity : AppCompatActivity() {
             mediaDir else filesDir
     }
 
+    /**
+     * This function will take the photo
+     **/
     private fun takePhoto() {
 
         val imageCapture = imageCapture ?: return
@@ -70,8 +73,6 @@ class CaptureImageActivity : AppCompatActivity() {
                 Locale.getDefault()
             ).format(System.currentTimeMillis()) + ".jpg"
         )
-
-
 
         val outputOption = ImageCapture.OutputFileOptions.Builder(photoFile).build()
 
@@ -95,6 +96,10 @@ class CaptureImageActivity : AppCompatActivity() {
 
     }
 
+
+    /**
+     * This function will start the camera
+     **/
     private fun startCamera() {
         val cameraProviderFuture = ProcessCameraProvider.getInstance(this)
         cameraProviderFuture.addListener({
@@ -125,8 +130,4 @@ class CaptureImageActivity : AppCompatActivity() {
         finish()
     }
 
-    override fun onResume() {
-        super.onResume()
-
-    }
 }

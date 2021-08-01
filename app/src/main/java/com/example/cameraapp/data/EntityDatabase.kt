@@ -16,7 +16,7 @@ abstract class EntityDatabase :  RoomDatabase(){
 
         /**
          * Creating a Database called entity_database
-         * */
+         **/
         fun getRoomDatabase(context: Context): EntityDatabase{
 
             if (INSTANCE == null){
