@@ -13,9 +13,11 @@ data class EntityTable(
     @ColumnInfo(name = "image_url")
     var image_url: String,
 
-    @ColumnInfo(name = "time_stamp")
-    var time_stamp: String,
+    @ColumnInfo(name = "date")
+    var date: String,
 
+    @ColumnInfo(name = "time")
+    var time: String,
 
     ) {
 

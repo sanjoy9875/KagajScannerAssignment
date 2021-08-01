@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
+import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
 import com.example.cameraapp.R
@@ -16,6 +17,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
+    private lateinit var viewModel: EntityViewModel
     private lateinit var adapter: EntityAdapter
     private var entityList = mutableListOf<EntityTable>()
 
@@ -24,8 +26,20 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         adapter = EntityAdapter(entityList)
-        recyclerView.layoutManager = LinearLayoutManager(this)
+        recyclerView.layoutManager = GridLayoutManager(this,2)
         recyclerView.adapter = adapter
+
+        val appObj = application as EntityApplication
+        val repository = appObj.repository
+        val viewModelFactory = EntityViewmodelFactory(repository)
+        viewModel = ViewModelProviders.of(this, viewModelFactory)
+            .get(EntityViewModel::class.java)
+
+        viewModel.getEntity().observe(this, Observer {
+            entityList.clear()
+            entityList.addAll(it)
+            adapter.notifyDataSetChanged()
+        })
 
     }
 }
