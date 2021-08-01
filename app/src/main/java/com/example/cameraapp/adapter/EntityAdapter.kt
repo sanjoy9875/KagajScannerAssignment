@@ -10,7 +10,7 @@ import com.bumptech.glide.Glide
 import com.example.cameraapp.R
 import com.example.cameraapp.data.EntityTable
 
-class EntityAdapter(private var entity: List<EntityTable>) :
+class EntityAdapter(private var entity: List<EntityTable>,private val onItemClick: OnItemClick) :
     RecyclerView.Adapter<EntityAdapter.EntityViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EntityViewHolder {
@@ -29,6 +29,10 @@ class EntityAdapter(private var entity: List<EntityTable>) :
         holder.mTvItemName.text = entity[position].image_name
         holder.mTvItemDate.text = entity[position].date
         holder.mTvItemTime.text = entity[position].time
+
+        holder.itemView.setOnClickListener {
+            onItemClick.onEntityItemClicked(position,holder.mIvItemImage)
+        }
 
 
     }

@@ -83,7 +83,6 @@ class CaptureImageActivity : AppCompatActivity() {
 
                     Glide.with(imageLoading)
                         .load(savedUri)
-                        .placeholder(R.drawable.placeholder)
                         .into(imageLoading)
 
                 }

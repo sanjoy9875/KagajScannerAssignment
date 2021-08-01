@@ -22,6 +22,7 @@
         android:id="@+id/card"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
         android:layout_marginStart="@dimen/dp_20"
         android:layout_marginTop="@dimen/dp_40"
         android:elevation="@dimen/dp_10"
@@ -30,8 +31,9 @@
 
         <ImageView
             android:id="@+id/image"
+            android:src="@drawable/place_holder"
             android:layout_width="@dimen/dp_150"
-            android:layout_height="@dimen/dp_150"
+            android:layout_height="@dimen/dp_160"
             android:layout_margin="@dimen/dp_1"
             android:scaleType="fitXY" />
 

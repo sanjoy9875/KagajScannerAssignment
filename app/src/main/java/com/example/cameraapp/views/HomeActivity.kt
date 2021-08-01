@@ -49,6 +49,7 @@ class HomeActivity : AppCompatActivity() {
         if (intent != null && intent.extras != null) {
             Glide.with(image)
                 .load(captureImage)
+                .placeholder(R.drawable.place_holder)
                 .into(image)
         }
 
@@ -68,10 +69,14 @@ class HomeActivity : AppCompatActivity() {
         btnSave.setOnClickListener {
             if (captureImage != null) {
 
-                val imageName = etName.text.toString()
+                var imageName = etName.text.toString()
                 val imageUri = captureImage.toString()
                 val date = LocalDate.now().toString()
                 val time = LocalTime.now().toString()
+
+                if (etName.text.isEmpty()){
+                    imageName = "Untitled"
+                }
 
                 val entityTable = EntityTable(imageName, imageUri, date, time)
 
